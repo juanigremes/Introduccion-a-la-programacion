@@ -131,3 +131,30 @@ sumatoriaN n m  | n == 1 = sumatoriaM m 1
 
 
 -- 14)
+
+
+-- 16)
+-- a)
+menorDivisor :: Int -> Int
+menorDivisor n  | mod n 2 == 0 = 2
+                | n==1 = 1
+                | otherwise = divisorImpares n 3
+
+divisorImpares :: Int -> Int -> Int
+divisorImpares n x  | mod n x == 0 = x
+                    | otherwise = divisorImpares n (x+2) 
+
+                    
+-- b)
+esPrimo :: Int -> Bool
+esPrimo x   | x==1 = False 
+            | otherwise = menorDivisor x == x
+
+-- c)
+sonCoprimos :: Int -> Int -> Bool
+sonCoprimos a b | a==b = True
+                | 
+
+-- 19) este tambien hay que terminarlo
+esSumaInicialDePrimos :: Int -> Bool
+esSumaInicialDePrimos x = True
