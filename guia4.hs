@@ -101,10 +101,10 @@ f4 :: Int -> Float -> Float
 f4 n q = (f2 (n*2) q) - (f2 n q) + (q^n)
 
 
--- 11) no lo termine
+-- 11)
 eAprox :: Int -> Float
 eAprox n    | n==0 = 1
-            | otherwise = eAprox (n-1) + (div 1 (factorial n))
+            | otherwise = eAprox (n-1) + (1 / fromIntegral(factorial n))
 
 factorial :: Int -> Int
 factorial n | n==0 = 1
