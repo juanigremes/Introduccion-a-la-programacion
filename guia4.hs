@@ -109,3 +109,25 @@ eAprox n    | n==0 = 1
 factorial :: Int -> Int
 factorial n | n==0 = 1
             | otherwise = factorial (n-1) * n
+
+-- b)
+e :: Float
+e = eAprox 10
+
+
+-- 12) no lo termine (corregir fromintegral, corregir todo)
+raizDeDosAprox :: Int -> Float
+raizDeDosAprox n = fromIntegral n 
+
+
+-- 13)
+sumatoriaM :: Int -> Int -> Int
+sumatoriaM m i  | m == 1 = i
+                | otherwise = sumatoriaM (m-1) i + (i^m)
+
+sumatoriaN :: Int -> Int -> Int 
+sumatoriaN n m  | n == 1 = sumatoriaM m 1 
+                | otherwise = sumatoriaN (n-1) m + sumatoriaM m n
+
+
+-- 14)
