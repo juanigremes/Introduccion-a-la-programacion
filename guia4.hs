@@ -115,9 +115,14 @@ e :: Float
 e = eAprox 10
 
 
--- 12) no lo termine (corregir fromintegral, corregir todo)
+-- 12) 
+raizDe2Aprox :: Int -> Float
+raizDe2Aprox n  | n==1 = 1
+                | otherwise = 2 + (1 / raizDeDosAprox (n-1)) - 1
+
 raizDeDosAprox :: Int -> Float
-raizDeDosAprox n = fromIntegral n 
+raizDeDosAprox n        | n==1 = 2
+                        | otherwise = 2 + (1 / raizDeDosAprox (n-1))
 
 
 -- 13)
@@ -131,6 +136,21 @@ sumatoriaN n m  | n == 1 = sumatoriaM m 1
 
 
 -- 14)
+sumaPotencias :: Int -> Int -> Int -> Int
+sumaPotencias q n m = q^(sumatoria n + sumatoria m)
+
+sumatoria :: Int -> Int
+sumatoria n = div (n*(n+1)) 2
+
+
+-- 15)
+sumaRacionalesM :: Int -> Int -> Float
+sumaRacionalesM m p     | m == 1 = fromIntegral p
+                        | otherwise = sumaRacionalesM (m-1) p + ((fromIntegral p) / (fromIntegral m))
+
+sumaRacionalesN :: Int -> Int -> Float 
+sumaRacionalesN n m     | n == 1 = sumaRacionalesM m 1 
+                        | otherwise = sumaRacionalesN (n-1) m + sumaRacionalesM m n
 
 
 -- 16)
