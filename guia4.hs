@@ -152,8 +152,20 @@ esPrimo x   | x==1 = False
 
 -- c)
 sonCoprimos :: Int -> Int -> Bool
-sonCoprimos a b | a==b = True
-                | 
+sonCoprimos a b | menorDivisor a == menorDivisor b = True 
+                | otherwise = comparoDivisores (menorDivisor a) (menorDivisor b) a b 
+
+comparoDivisores :: Int -> Int -> Int -> Int -> Bool
+comparoDivisores x y a b        | x==y = True
+                                | (x==a) && (y==b) = False
+                                | y==b = comparoDivisores (siguienteDivisor a (x+1)) (menorDivisor b) a b 
+                                | otherwise = comparoDivisores x (siguienteDivisor b (y+1)) a b 
+
+siguienteDivisor :: Int -> Int -> Int
+siguienteDivisor z d    | mod z d == 0 = d
+                        | z < d = 0
+                        | otherwise = siguienteDivisor z (d+1)
+
 
 -- 19) este tambien hay que terminarlo
 esSumaInicialDePrimos :: Int -> Bool
