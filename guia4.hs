@@ -1,22 +1,22 @@
 -- 1)
 fibonacci :: Int -> Int
 fibonacci n | n == 0 = 0
-           | n == 1 = 1
-           | otherwise = fibonacci (n - 1) + fibonacci (n - 2)
+            | n == 1 = 1
+            | otherwise = fibonacci (n - 1) + fibonacci (n - 2)
 
 
 -- 2)
 parteEntera :: Float -> Int
 parteEntera x   | x >= 0 && x < 1 = 0
-               | x < 0 = (parteEntera (x + 1) ) - 1
-               | otherwise = (parteEntera (x - 1)) + 1
+                | x < 0 = (parteEntera (x + 1) ) - 1
+                | otherwise = (parteEntera (x - 1)) + 1
 
 
 -- 3)
 esDivisible :: Int -> Int -> Bool
 esDivisible x y | ((x - y) == 0) = True
-               | ((x - y) < y) = False
-               | otherwise = esDivisible (x - y) y
+                | ((x - y) < y) = False
+                | otherwise = esDivisible (x - y) y
 -- otra resolucion
 -- esDivisible x y  | x < y = x == 0
 --                  | otherwise esDivisible (x-y) y
@@ -186,6 +186,15 @@ siguienteDivisor z d    | mod z d == 0 = d
                         | z < d = 0
                         | otherwise = siguienteDivisor z (d+1)
 
+-- d)
+nEsimoPrimo :: Int -> Int
+nEsimoPrimo n = calculaPrimos 2 n
+
+calculaPrimos :: Int -> Int -> Int
+calculaPrimos x y       | ((esPrimo x) == (True)) && (y == 1) = x
+                        | ((esPrimo x) == (True)) && (y /= 1) = calculaPrimos (x + 1) (y - 1)
+                        | otherwise = calculaPrimos (x + 1) y
+                        
 
 -- 19) este tambien hay que terminarlo
 esSumaInicialDePrimos :: Int -> Bool
