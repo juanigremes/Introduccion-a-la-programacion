@@ -73,5 +73,27 @@ quitarTodosAux a (x:xs) | a==x && xs==[] = []
 
 -- 7-
 eliminarRepetidos :: (Eq t) => [t] -> [t]
-eliminarRepetidos (x:y:xs)  | x==y = x: eliminarRepetidos (y:xs)
-                            | otherwise = 
+eliminarRepetidos [] = []
+eliminarRepetidos [x] = [x]
+--eliminarRepetidos (x:y:xs)  | x==y = eliminarRepetidos (y:xs)  esto no me servia si habia repetidos desordenados, solo si estaban pegados.
+--                            | otherwise = x: eliminarRepetidos (y:xs)
+eliminarRepetidos (x:xs)    | pertenece x xs == True = eliminarRepetidos xs
+                            | otherwise = x: eliminarRepetidos xs -- esto me sirve pero deja toda la lista desordenada.
+
+-- 8-
+mismosElementos :: (Eq t) => [t] -> [t] -> Bool
+mismosElementos [] [] = True
+mismosElementos [] (y:ys) = False
+mismosElementos (x:xs) [] = False
+mismosElementos [x] [y] | x==y =True
+                        | otherwise = False
+mismosElementos (x:xs) (y:ys) = mismosElementosAux (x:xs) (y:ys) && mismosElementosAux (y:ys) (x:xs)
+
+mismosElementosAux :: (Eq t) => [t] -> [t] -> Bool
+mismosElementosAux [] (y:ys) = True
+mismosElementosAux (x:xs) (y:ys)   | pertenece x (y:ys) == True = mismosElementosAux xs (y:ys)
+                                   | otherwise = False
+
+-- 9-
+capicua  :: (Eq t) => [t] -> Bool
+capicua (x:xs) 
