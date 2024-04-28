@@ -7,11 +7,17 @@ sumaTotalDeVotos :: [Int] -> Int
 sumaTotalDeVotos [] = 0
 sumaTotalDeVotos (x:xs) = x + (sumaTotalDeVotos xs)
 
+
 -- no se si tengo que tener en cuenta formulas en las que hay algun string vacio, porque entra como formula valida, ya que es "TRUE" y no lo condiciona el asgura de ese problema, pero me suena muy raro que tenga que tenerlo en cuenta.
--- formulasBlancasYSusVotos :: [(String , String)] -> [(String , String)] 
--- formulasBlancasYSusVotos [] = []
--- formulasBlancasYSusVotos (x:xs) | fst x == " " || snd x == " " = x: formulasBlancasYSusVotos xs
---                                 | otherwise = formulasBlancasYSusVotos xs
+-- -- Ejercicio 1 --
+-- votosEnBlanco :: [(String , String)] -> [Int] -> Int -> Int
+-- votosEnBlanco f v n = n - (sumaTotalDeVotos v) + (sumaTotalDeVotos (formulasBlancasYSusVotos f v))
+
+--formulasBlancasYSusVotos :: [(String , String)] -> [Int] -> [Int]
+--formulasBlancasYSusVotos [] _ = []
+--formulasBlancasYSusVotos (x:xs) (v:vs)  | fst x == " " || snd x == " " = v : (formulasBlancasYSusVotos xs vs)
+                                        | otherwise = formulasBlancasYSusVotos xs vs
+
 
 -- Ejercicio 2 --
 formulasValidas :: [(String , String)] -> Bool
