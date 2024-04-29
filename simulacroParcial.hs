@@ -51,6 +51,7 @@ separarSegundoElementoTuplas (a,b) = snd (a,b)
 
 -- ejercicio 3 --
 amigosDe :: String -> [(String, String)] -> [String]
+amigosDe _ [] = []
 amigosDe p (x:xs) = eliminarPersonaPrincipal p (personas (verificoPertenencia p (x:xs)))
 
 verificoPertenencia :: String -> [(String, String)] -> [(String, String)] 
