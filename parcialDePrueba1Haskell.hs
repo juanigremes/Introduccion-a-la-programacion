@@ -16,7 +16,7 @@ sumaTotalDeVotos (x:xs) = x + (sumaTotalDeVotos xs)
 --formulasBlancasYSusVotos :: [(String , String)] -> [Int] -> [Int]
 --formulasBlancasYSusVotos [] _ = []
 --formulasBlancasYSusVotos (x:xs) (v:vs)  | fst x == " " || snd x == " " = v : (formulasBlancasYSusVotos xs vs)
-                                        | otherwise = formulasBlancasYSusVotos xs vs
+--                                        | otherwise = formulasBlancasYSusVotos xs vs
 
 
 -- Ejercicio 2 --
