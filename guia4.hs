@@ -196,6 +196,52 @@ calculaPrimos x y       | ((esPrimo x) == (True)) && (y == 1) = x
                         | otherwise = calculaPrimos (x + 1) y
                         
 
--- 19) este tambien hay que terminarlo
+-- 17)
+esFibonacci :: Int -> Bool
+esFibonacci n   | n <= 3 = True
+                | otherwise = comparoFibonacci 4 n
+
+comparoFibonacci :: Int -> Int -> Bool
+comparoFibonacci x n    | fibonacci x > n = False
+                        | fibonacci x == n = True
+                        | otherwise = comparoFibonacci (x + 1) n
+
+
+-- 18) 
+mayorDigitoPar :: Int -> Int
+mayorDigitoPar n        | n < 10 && ((esPar n) == True) = n 
+                        | n < 10 && ((esPar n) == False) = -1
+                        | otherwise = buscoElMayor (armoListaNPares n)
+
+esPar :: Int -> Bool
+esPar 0 = False
+esPar n | mod n 2 == 0 = True
+        | otherwise = False
+
+armoListaNPares :: Int -> [Int]
+armoListaNPares 0 = []
+armoListaNPares n       | esPar (mod n 10) = (mod n 10) : (armoListaNPares (div n 10))
+                        | otherwise = armoListaNPares (div n 10)
+
+buscoElMayor :: [Int] -> Int
+buscoElMayor [] = -1
+buscoElMayor [x] = x
+buscoElMayor (x:y:xs)   | x >= y = buscoElMayor (x:xs)
+                        | otherwise = buscoElMayor (y:xs)
+
+
+-- 19)
 esSumaInicialDePrimos :: Int -> Bool
-esSumaInicialDePrimos x = True
+esSumaInicialDePrimos n = funcionANombrar n 2 0 2
+
+funcionANombrar :: Int -> Int -> Int -> Int -> Bool
+funcionANombrar n x y p | n < (sumaDeNumeros x y) = False
+                        | n == (sumaDeNumeros x y) = True
+                        | otherwise = funcionANombrar n (sumaDeNumeros x y) (siguientePrimo (p+1)) (siguientePrimo (p+1)) 
+
+sumaDeNumeros :: Int -> Int -> Int
+sumaDeNumeros x y = x + y
+
+siguientePrimo ::  Int -> Int
+siguientePrimo n    | esPrimo n == True = n
+                    | otherwise = siguientePrimo (n+1)
