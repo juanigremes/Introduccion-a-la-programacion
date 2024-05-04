@@ -245,3 +245,49 @@ sumaDeNumeros x y = x + y
 siguientePrimo ::  Int -> Int
 siguientePrimo n    | esPrimo n == True = n
                     | otherwise = siguientePrimo (n+1)
+
+-- 20)
+tomaValorMax :: Int -> Int -> Int
+tomaValorMax x y = compararSumaDivisores (numerosEntreNyN x y)
+
+todosLosDivisores :: Int -> Int -> [Int]
+todosLosDivisores x y   | x == y = [x]
+                        | mod x y == 0 = y : todosLosDivisores x (y+1)
+                        | otherwise = todosLosDivisores x (y+1)
+
+sumaDivisores :: [Int] -> Int
+sumaDivisores [] = 0
+sumaDivisores (x:xs) = x + sumaDivisores xs
+
+numerosEntreNyN :: Int -> Int -> [Int]
+numerosEntreNyN x y     | x == y = [y]
+                        | x < y = x : numerosEntreNyN (x+1) y
+
+-- no era mala idea y me salio bien por eso no la quiero borrar, pero no me sirve actually porque seria mas quilombo de lo que es ahora
+--intercambioNPorSumaDivisores :: [Int] -> [Int]
+--intercambioNPorSumaDivisores [] = []
+--intercambioNPorSumaDivisores (x:xs) = (sumaDivisores (todosLosDivisores x 1)) : intercambioNPorSumaDivisores xs
+
+compararSumaDivisores :: [Int] -> Int 
+compararSumaDivisores [x] = x
+compararSumaDivisores (x:y:xs)  | (sumaDivisores (todosLosDivisores x 1)) >= (sumaDivisores (todosLosDivisores y 1)) = compararSumaDivisores (x:xs)
+                                | otherwise = compararSumaDivisores (y:xs)
+
+
+-- 21)
+pitagoras :: Int -> Int -> Int -> Int
+pitagoras m n r = contadorDeParesPitagoras (armoTuplas (numerosEntreNyN 0 m) (numerosEntreNyN 0 n) (numerosEntreNyN 0 n)) r
+
+contadorDeParesPitagoras :: [(Int,Int)] -> Int -> Int
+contadorDeParesPitagoras [] _ = 0
+contadorDeParesPitagoras (x:xs) r       | sonPitagoras x r == True = 1 + contadorDeParesPitagoras xs r
+                                        | otherwise = contadorDeParesPitagoras xs r
+
+armoTuplas :: [Int] -> [Int] -> [Int] -> [(Int,Int)]
+armoTuplas [m] [n] rs = [(m,n)]
+armoTuplas (m:ms) [n] rs = (m,n) : armoTuplas ms rs rs
+armoTuplas (m:ms) (n:ns) rs = (m,n) : armoTuplas (m:ms) ns rs
+
+sonPitagoras :: (Int,Int) -> Int -> Bool
+sonPitagoras t r        | ((fst t) ^ 2) + ((snd t) ^ 2) <= (r ^ 2) = True
+                        | otherwise = False 
