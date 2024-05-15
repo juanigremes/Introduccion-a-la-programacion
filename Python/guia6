@@ -1,0 +1,53 @@
+# CADA VEZ QUE DEFINO O CORRIJO ALGO TENGO QUE REINICIAR EL python3
+
+#Ej 1.1
+def imprimir_hola_mundo () :
+    print ("¡Hola Mundo!")
+
+#Ej 1.5
+def perimetro () -> float :
+    return 2*3.14
+
+#Ej 2.5
+def es_multiplo_de (n:int ,m: int) -> bool :
+    res: bool = (n%m) == 0 # el % es como el mod en haskell
+    return res
+
+#Ej 3.3
+def es_nombre_largo (x: str) -> bool :
+        longitudx: int = len(x)
+        return longitudx >= 3 and longitudx <= 8
+
+#Ej 5.1
+def devolver_el_doble_si_es_par (n:int) -> int :
+     if (n%2 == 0):
+          return 2*n
+     else:
+          return n
+     
+#Ej 6.2
+def paresDel10al40 () -> int :
+     x = 10
+     while (x <= 40):
+          print (x)
+          x += 2
+
+#Ej 6.4
+def cuentaRegresiva (x: int) :
+    while (x >= 1) :
+          print (x)
+          x -= 1
+    print ("Despegue")
+
+#Ej 7.2
+def paresDel10al40v7 () -> int :
+     for num in range (10,42,2) :
+          print (num)
+
+#Ej 7.4
+def cuentaRegresivav7 (x: int) :
+     for num in range (x,0,(-1)) :
+          print (num)
+
+     print ("Despegue")
+
