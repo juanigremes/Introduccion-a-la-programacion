@@ -1,4 +1,4 @@
 # Introduccion-a-la-programacion
-Guias Practicas IntroProg
-Parciales de Prueba
-Parcial
+-Guias Practicas IntroProg
+-Parciales de Prueba
+-Parcial
