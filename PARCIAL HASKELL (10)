@@ -1,0 +1,80 @@
+module SolucionT1 where
+
+-- Ejercicio 1 --
+
+aproboMasDeNMaterias :: [(String, [Int])] -> String -> Int -> Bool
+aproboMasDeNMaterias xs a n | ((materiasAprobadas (identificoAlumno xs a)) > n) = True
+                            | otherwise = False
+
+identificoAlumno :: [(String, [Int])] -> String -> (String, [Int])
+identificoAlumno (x:xs) a   | ((fst x) == a) = x
+                            | otherwise = identificoAlumno xs a
+
+materiasAprobadas :: (String, [Int]) -> Int
+materiasAprobadas t = contadorMateriasAprobadas (snd t)
+
+contadorMateriasAprobadas :: [Int] -> Int
+contadorMateriasAprobadas [] = 0
+contadorMateriasAprobadas (y:ys)    | y >= 4 = 1 + contadorMateriasAprobadas ys
+                                    | otherwise = contadorMateriasAprobadas ys
+
+
+-- Ejercicio 2 --
+
+buenosAlumnos :: [(String, [Int])] -> [String]
+buenosAlumnos [] = []
+buenosAlumnos xs = sacoAlumnosDeTuplas (verificoPromedios xs)
+
+sacoAlumnosDeTuplas :: [(String, [Int])] -> [String]
+sacoAlumnosDeTuplas [] = []
+sacoAlumnosDeTuplas (t:ts) = (fst t) : (sacoAlumnosDeTuplas ts)
+
+verificoPromedios :: [(String, [Int])] -> [(String, [Int])]
+verificoPromedios [] = []
+verificoPromedios (x:xs)| ((buenPromedio x) == True) = x : verificoPromedios xs
+                        | otherwise = verificoPromedios xs
+
+buenPromedio :: (String, [Int]) -> Bool
+buenPromedio t  | ((promedio t) >= 8) && (noTieneAplazos (snd t) == True) = True
+                | otherwise = False
+
+promedio :: (String, [Int]) -> Float
+promedio t = (fromIntegral (sumatoriaNotas (snd t))) / (fromIntegral (cantidadDeMaterias (snd t)))
+
+sumatoriaNotas :: [Int] -> Int
+sumatoriaNotas [] = 0
+sumatoriaNotas [x] = x
+sumatoriaNotas (x:xs) = x + (sumatoriaNotas xs)
+
+cantidadDeMaterias :: [Int] -> Int
+cantidadDeMaterias [] = 0
+cantidadDeMaterias (x:xs) = 1 + (cantidadDeMaterias xs)
+
+noTieneAplazos :: [Int] -> Bool
+noTieneAplazos [] = True
+noTieneAplazos (x:xs)   | x < 4 = False
+                        | otherwise = noTieneAplazos xs
+
+
+-- Ejercicio 3 -- 
+
+mejorPromedio ::  [(String, [Int])] -> String
+mejorPromedio [] = []
+mejorPromedio [x] = (fst x)
+mejorPromedio (x:y:xs)  | (promedio x) >= (promedio y) = mejorPromedio (x:xs)
+                        | otherwise = mejorPromedio (y:xs)
+
+
+-- Ejercicio 4 -- 
+
+seGraduoConHonores :: [(String, [Int])] -> Int -> String -> Bool
+seGraduoConHonores xs m a   | (aproboMasDeNMaterias xs a (m-1)) && (pertenece a (buenosAlumnos xs)) && ((diferenciaConMejorPromedio a xs) < 1) = True
+                            | otherwise = False
+
+pertenece :: String -> [String] -> Bool
+pertenece _ [] = False
+pertenece a (x:xs)  | a == x = True
+                    | otherwise = pertenece a xs
+
+diferenciaConMejorPromedio :: String -> [(String, [Int])] -> Float
+diferenciaConMejorPromedio a xs = (promedio (identificoAlumno xs (mejorPromedio xs))) - (promedio (identificoAlumno xs a))
