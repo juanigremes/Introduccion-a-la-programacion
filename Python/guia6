@@ -137,11 +137,11 @@ def peso_pino (altura: float) -> float:
      return peso
 
 #Ej 4.2
-#def es_peso_util (peso: float) -> bool:
-
-
-     
-
+def es_peso_util (peso: float) -> bool:
+     res: bool = False
+     if (400 < peso < 1000 ) :
+          res = True
+     return res
 
 #Ej 5.1
 def devolver_el_doble_si_es_par (n:int) -> int :
