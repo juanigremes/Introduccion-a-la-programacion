@@ -246,7 +246,7 @@ def imprimoEco10Veces () -> str:
           print ("eco")
           x += 1
 
-print (imprimoEco10Veces())
+#print (imprimoEco10Veces())
 
 #Ej 6.4
 def cuentaRegresiva (x: int) :
@@ -254,6 +254,24 @@ def cuentaRegresiva (x: int) :
           print (x)
           x -= 1
     print ("Despegue")
+
+#Ej 6.5
+def viajeTiempo (partida: int, llegada: int) :
+     while (partida > llegada):
+          partida = (partida - 1)
+          print ("Viajó un año al pasado, estamos en el año: " + str(partida))
+     
+
+#print (viajeTiempo (2020,2015))
+
+#Ej 6.6
+def viajeAl384ac (partida: int) :
+     llegada: int = 384
+     while (partida > (llegada + 19)):
+          partida = (partida - 20)
+          print ("Viajó veinte años al pasado, estamos en el año: " + str(partida))
+
+#print (viajeAl384ac (2005))
 
 #Ej 7.2
 def paresDel10al40v7 () -> int :
