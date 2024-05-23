@@ -273,10 +273,20 @@ def viajeAl384ac (partida: int) :
 
 #print (viajeAl384ac (2005))
 
+#Ej 7.1
+def numerosDel1al10v7 () -> int:
+     for num in range (1,11,1):
+          print (num)
+
 #Ej 7.2
 def paresDel10al40v7 () -> int :
      for num in range (10,42,2) :
           print (num)
+
+#Ej 7.3
+def imprimoEco10Vecesv7 () -> str:
+     for num in range (1,11,1):
+          print ("eco")
 
 #Ej 7.4
 def cuentaRegresivav7 (x: int) :
@@ -284,3 +294,13 @@ def cuentaRegresivav7 (x: int) :
           print (num)
 
      print ("Despegue")
+
+#Ej 7.5
+def viajeTiempo (partida: int, llegada: int) :
+     for num in range (partida,(llegada+1),(-1)):
+          print ("Viajó un año al pasado, estamos en el año: " + str(num))
+
+#Ej 7.6
+def viajeTiempo (partida: int) :
+     for num in range (partida,(384),(-20)):
+          print ("Viajó un año al pasado, estamos en el año: " + str(num))
