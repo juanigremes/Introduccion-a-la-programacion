@@ -60,7 +60,7 @@ def imprimir_dos_veces (estribillo: str) :
 #                              Don't hesitate to maybe overcompensate)
 #                              """ ))
 
-#Ej 2.5
+#Ej 2.5           n es multiplo de m
 def es_multiplo_de (n:int ,m: int) -> bool :
     res: bool = (n%m) == 0 # el % es como el mod en haskell
     return res
@@ -166,12 +166,87 @@ def devolver_valor_si_es_par_sino_el_que_sigue (n:int) -> int:
      else:
           return (n + 1)
      
+#Ej 5.3
+def devolver_el_doble_si_es_multiplo3_el_triple_si_es_multiplo9 (n: int) -> int :
+     res: int = n
+     if (es_multiplo_de (n,3)):
+          res = 2 * n
+          if (es_multiplo_de (n,9)):
+               res = 3 * n
+     return n
+
+#Ej 5.4
+def lindo_nombre (nombre: str):
+     if (len(nombre) >= 5):
+          print ("Tu nombre tiene muchas letras!")
+     else:
+          print("Tu nombre tiene menos de 5 caracteres")
+
+#print (lindo_nombre("Karen"))
+#print (lindo_nombre("Juan"))
+
+#Ej 5.5
+def elRango (n: int):
+     if (n < 5):
+          print ("Menor a 5")
+     elif (10 <= n <= 20):
+          print ("Entre 10 y 20")
+     elif (n > 20):
+          print ("Mayor a 20")
+     else:
+          print ("no me especificaron que hacer aca")
+
+"""
+print (elRango (3))
+print (elRango (7))
+print (elRango (13))
+print (elRango (23))
+"""
+
+#Ej 5.6
+def vacacionesOtrabajo (sexo: str, edad: int) -> str :
+     vacaciones: str = "Andá de vacaciones"
+     trabajo: str = "Te toca trabajar"
+     if (18 < edad < 60):
+          print (trabajo)
+     else:
+          if (60 <= edad < 65):
+               if (sexo == "M"):
+                    print (trabajo)
+               else:
+                    print (vacaciones)
+          else:
+               print (vacaciones)
+
+"""
+print (vacacionesOtrabajo ("F",54))
+print (vacacionesOtrabajo ("F",63))
+"""
+
+#Ej 6.1
+def numerosDel1al10 () -> int:
+     x: int = 1
+     while (x <= 10):
+          print (x)
+          x += 1
+
+#print (numerosDel1al10())
+
 #Ej 6.2
 def paresDel10al40 () -> int :
      x = 10
      while (x <= 40):
           print (x)
           x += 2
+
+#Ej 6.3
+def imprimoEco10Veces () -> str:
+     x: int = 1
+     while (x <= 10):
+          print ("eco")
+          x += 1
+
+print (imprimoEco10Veces())
 
 #Ej 6.4
 def cuentaRegresiva (x: int) :
