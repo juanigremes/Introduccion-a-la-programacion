@@ -150,12 +150,21 @@ def sirve_pino (altura: float) -> bool:
           res = True
      return res
 
+# EN REALIDAD TENGO QUE VER COMO FUNCIONAN LAS FUNCIONES DE MIN Y MAX
+
 #Ej 5.1
 def devolver_el_doble_si_es_par (n:int) -> int :
      if (n%2 == 0):
           return 2*n
      else:
           return n
+     
+#Ej 5.2
+def devolver_valor_si_es_par_sino_el_que_sigue (n:int) -> int:
+     if (n%2 == 0):
+          return n
+     else:
+          return (n + 1)
      
 #Ej 6.2
 def paresDel10al40 () -> int :
