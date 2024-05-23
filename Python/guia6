@@ -143,6 +143,13 @@ def es_peso_util (peso: float) -> bool:
           res = True
      return res
 
+#Ej 4.3
+def sirve_pino (altura: float) -> bool:
+     res: bool = False
+     if (es_peso_util (peso_pino(altura))):
+          res = True
+     return res
+
 #Ej 5.1
 def devolver_el_doble_si_es_par (n:int) -> int :
      if (n%2 == 0):
