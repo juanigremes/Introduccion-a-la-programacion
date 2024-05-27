@@ -201,3 +201,50 @@ print (tresVocalesDistintas("loro"))
 """
 
 #SEGUNDA PARTE
+
+#Ej 2.1
+def sacoPares (lista: list[int]) -> list[int]:
+    for indice in range (0,len(lista),1):
+        if (indice % 2 == 0):
+            lista[indice] = 0
+            
+    return lista
+
+#print (sacoPares ([1,2,3,4,5,6,7,8,9]))
+
+#Ej 2.2
+def sacoParesV2 (lista: list[int]) -> list[int]:
+    listamodificada: list[int] = lista
+    for indice in range (0,len(lista),1):
+        if (indice % 2 == 0):
+            listamodificada[indice] = 0
+            
+    return listamodificada
+
+#print (sacoParesV2 ([1,2,3,4,5,6,7,8,9]))
+
+#Ej 2.3
+def sacoVocales (palabra: list[str]) -> list[str]:
+    vocales: list[str] = ["a","e","i","o","u","A","E","I","O","U"]
+    sinVocales: list[str] =""
+    for letra in palabra:
+        if (not perteneceV9 (vocales,letra)):
+            sinVocales = sinVocales + letra
+
+    return sinVocales
+
+#print (sacoVocales ("palabra"))
+
+#Ej 2.4
+def reemplaza_vocales (palabra: list[str]) -> list[str]:
+    vocales: list[str] = ["a","e","i","o","u"]
+    sinVocales: list[str] =""
+    for letra in palabra:
+        if (not perteneceV9 (vocales,letra)):
+            sinVocales = sinVocales + letra
+        else:
+            sinVocales = sinVocales + "_"
+
+    return sinVocales
+
+#print (reemplaza_vocales("palabra"))
