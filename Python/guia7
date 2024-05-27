@@ -1,3 +1,5 @@
+#PRIMERA PARTE
+
 #Ej 1.1
 def pertenece (s: list[int],e: int ) -> bool:
     res: bool = False
@@ -103,3 +105,99 @@ print (palabraLarga (["hola","letra","barbaridad"]))
 """)
 
 #Ej 1.6
+def palindrome (palabra: str) -> bool:
+    res = False
+    palabraReves: str = ""
+    for letra in palabra:
+        palabraReves = letra + palabraReves
+
+    if (palabraReves == palabra) :
+        res = True
+
+    return res
+
+"""
+print (palindrome ("kayak"))
+print (palindrome ("carlos")) 
+print (palindrome ("anana"))
+"""
+
+#Ej 1.7
+def fortaleza (contraseña: str) -> str:
+    minusculas: int = 0
+    mayusculas: int = 0
+    numeros: int = 0
+
+    for caracter in contraseña:
+        if ( 'a' <= caracter <= 'z' ):
+            minusculas += 1
+        elif ( 'A' <= caracter <= 'Z' ):
+            mayusculas +=1
+        elif ( '0' <= caracter <= '9' ):
+            numeros += 1
+    
+    if (len(contraseña) > 8) and (minusculas >= 1) and (mayusculas >= 1) and (numeros >= 1):
+        return ("VERDE")
+    elif (len(contraseña) < 5):
+        return ("ROJA")
+    else:
+        return ("AMARILLA")
+
+"""
+print (fortaleza ("Contraseña2024"))
+print (fortaleza ("pablo43"))
+print (fortaleza ("pila"))
+"""
+
+#Ej 1.8
+def saldoActual (operaciones: list[tuple[str,int]]) -> int:
+    saldoFinal: int = 0
+    for tupla in operaciones:
+        if (tupla[0] == "I"):
+            saldoFinal += tupla[1]
+        elif (tupla[0] == "R"):
+            saldoFinal -= tupla[1]
+
+    return saldoFinal
+
+#print (saldoActual([("I",2000), ("R", 20),("R", 1000),("I", 300)]))
+
+#Ej 1.9
+
+def perteneceV9 (s: list[str],e: str ) -> bool:
+    res: bool = False
+    for elemento in s:
+        if (e == elemento):
+            res = True
+
+    return res
+
+def sacarRepetidosV9 (inicial: list[str]) -> list[str]:
+    final: list[str] = ""
+    for v in inicial:
+        if (not (perteneceV9 (final,v))):
+            final = v + final
+
+    return final
+
+def tresVocalesDistintas (palabra: str) -> bool:
+    res: bool = False
+    vocales: list[str] = ["a","e","i","o","u","A","E","I","O","U"]
+    soloVocales: str = ""
+    for letra in palabra:
+        if (perteneceV9(vocales,letra)):
+            soloVocales = letra + soloVocales
+    
+    if (len (sacarRepetidosV9(soloVocales)) >= 3):
+        res = True
+
+    return res
+
+"""
+print (tresVocalesDistintas("murcielago"))
+print (tresVocalesDistintas("camion"))
+print (tresVocalesDistintas("Abracemos"))
+print (tresVocalesDistintas("loro"))
+"""
+
+#SEGUNDA PARTE
