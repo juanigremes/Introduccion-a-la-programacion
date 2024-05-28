@@ -248,3 +248,92 @@ def reemplaza_vocales (palabra: list[str]) -> list[str]:
     return sinVocales
 
 #print (reemplaza_vocales("palabra"))
+
+#Ej 2.5
+def da_vuelta_str (secuencia: list[str]) -> list [str]:
+    aicneuces: str = ""
+    for letra in secuencia:
+        aicneuces = letra + aicneuces
+
+    return aicneuces
+
+#print (da_vuelta_str("lolardo"))
+
+#Ej 2.6
+def sacarRepetidosV26 (secuencia: list[str]) -> list[str]:
+    final: list[str] = ""
+    for v in secuencia:
+        if (not (perteneceV9 (final,v))):
+            final = v + final
+
+    return final
+
+#Ej 3
+def aprobado (notas: list[int]) -> int:
+    buenaNota: int = 0
+    insuficiente: int = 0
+
+    for nota in notas:
+        if (nota >= 4):
+            buenaNota += 1
+        else:
+            insuficiente += 1
+    
+    if (insuficiente >= 1):
+        res = 3
+    else:
+        if (promedio (notas) >= 7):
+            res = 1
+        else:
+            res = 2
+    
+    return res
+
+def promedio (lista: list[int]) -> float:
+    sumatotal: float = 0
+    
+    for n in lista:
+        sumatotal += n
+    
+    final = sumatotal / (len(lista)) 
+        
+    return final
+
+"""
+print (aprobado([5,5,5,5,5]))
+print (aprobado([8,8,8,8,8]))
+print (aprobado([4,3,4,4,4]))
+"""
+
+#Ej 4.1
+def misEstudiantes () -> list[str]:
+    estudiantes: list[str] = []
+    while (True):
+        estudiante = input("introducir nombre estudiante o listo:")
+        if (estudiante == "listo") :
+            return estudiantes
+        else:
+            estudiantes.append(estudiante)
+
+#print(misEstudiantes())
+
+#Ej 4.2
+def historialSUBE () -> list[tuple[str,float]]:
+    historial: list[tuple[str,float]] = []
+    tupla: tuple[str,float] = []
+    while (True):
+        operacion = input("introducir C , D o X: ")
+        if (operacion == "C"):
+            monto = input("monto a cargar: ")
+            tupla = ["C",monto]
+            historial.append(tupla)
+        elif (operacion == "D"):
+            monto = input("monto a descontar: ")
+            tupla = ["D",monto]
+            historial.append(tupla)
+        elif (operacion == "X"):
+            return historial
+
+#print (historialSUBE())
+
+#Ej 4.3
