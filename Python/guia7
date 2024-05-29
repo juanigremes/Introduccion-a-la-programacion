@@ -337,3 +337,40 @@ def historialSUBE () -> list[tuple[str,float]]:
 #print (historialSUBE())
 
 #Ej 4.3
+import random
+def sieteYMedio () -> list[float]:
+
+    cartaInicial: float = random.choice([1,2,3,4,5,6,7,10,11,12])
+    print ("sacó la carta " + str(cartaInicial))
+    if (cartaInicial == 10 or cartaInicial == 11 or cartaInicial == 12):
+        cartaInicial = 0.5
+        print ("tenés: 0.5 puntos")
+    else:
+        print ("tenés: " + str(cartaInicial) + " puntos")
+
+    sumaCartas: float = cartaInicial
+    historialCartas: list[float] = [cartaInicial]
+
+    while (sumaCartas <= 7.5):
+        siguienteReparto = input("querés sacar otra carta [si] o plantarte [no]? ")
+
+        if (siguienteReparto == "si"):
+            repartirCarta: float = random.choice([1,2,3,4,5,6,7,10,11,12])
+            print ("sacó la carta " + str(repartirCarta))
+            if (repartirCarta == 10 or repartirCarta == 11 or repartirCarta == 12):
+                repartirCarta = 0.5
+            sumaCartas += repartirCarta
+            print ("tenés: " + str(sumaCartas) + " puntos")
+            historialCartas.append(repartirCarta)
+
+        elif (siguienteReparto == "no"):
+            print ("te plantas")
+            print ("tenés: " + str(sumaCartas) + " puntos")
+            print ("estas fueron tus cartas:")
+            return historialCartas
+        
+    print ("perdiste")
+    print ("estas fueron tus cartas:")
+    return historialCartas
+
+print (sieteYMedio())
