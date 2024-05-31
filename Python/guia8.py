@@ -58,6 +58,7 @@ def cantidad_apariciones (nombreArchivo: str, palabra:str) -> int:
     archivo.close()
     res: int = contarApariciones(armarPalabras(leoArchivo),palabra)
     return res
+
 """
 print (cantidad_apariciones ("miArchivo.txt","hola"))
 print (cantidad_apariciones ("miArchivo.txt","lol"))
