@@ -68,6 +68,7 @@ print (cantidad_apariciones ("miArchivo.txt","teorema"))
 """
 
 # PILAS
+
 #Ej 8
 from queue import LifoQueue as Pila
 import random
