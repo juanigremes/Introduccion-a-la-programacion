@@ -44,6 +44,28 @@ print (existePalabra("lol","miArchivo.txt"))
 print (existePalabra("bien","miArchivo.txt"))
 """
 
+#Ej 1.3
+def contarApariciones (listaPalabras: list[str], palabra: str) -> int:
+    contador: int = 0
+    for elemento in listaPalabras:
+        if elemento == palabra:
+            contador += 1
+    return contador
+
+def cantidad_apariciones (nombreArchivo: str, palabra:str) -> int:
+    archivo = open(nombreArchivo)
+    leoArchivo = archivo.read()
+    archivo.close()
+    res: int = contarApariciones(armarPalabras(leoArchivo),palabra)
+    return res
+"""
+print (cantidad_apariciones ("miArchivo.txt","hola"))
+print (cantidad_apariciones ("miArchivo.txt","lol"))
+print (cantidad_apariciones ("miArchivo.txt","hola"))
+print (cantidad_apariciones ("miArchivo.txt","capo"))
+print (cantidad_apariciones ("miArchivo.txt","teorema"))
+"""
+
 # PILAS
 #Ej 8
 from queue import LifoQueue as Pila
