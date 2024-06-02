@@ -123,13 +123,14 @@ def invertirLineas (nombreArchivo: str) -> str:
 
 #Ej 4
 def agregarFraseAlFinal (nombreArchivo: str, frase: str):
-    archivo = open(nombreArchivo,'r+')
-    archivoConFrase = archivo.write("\n" + frase)  
+    archivo = open(nombreArchivo,'a+')
+    archivo.write("\n" + frase)
+    achivoConFrase = archivo.read()
     archivo.close
-    return archivoConFrase
+    return archivoConFraseLeido
 
 print (agregarFraseAlFinal ("miArchivo.txt","frase agregada al final"))
-#ARREGLAR, NO ESTA TERMINADO
+#ARREGLAR, NO ESTA TERMINADO  /  FIJARSE SI ESTA ARREGLADO
 
 # PILAS
 
