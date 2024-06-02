@@ -144,8 +144,13 @@ print (agregarFraseAlPrincipio("miArchivo.txt","frase agregada al principio ej5"
 #FIJARSE SI FUNCIONA
 
 #Ej 6
-def listarPalabrasDeArchivo (nombreArchivo: str) -> list[str]:
+#def listarPalabrasDeArchivo (nombreArchivo: str) -> list[str]:
+# DESPUES HAGO ESTE EJERCICIO
+
+#Ej 7
+def promedioEstudiante (nombreArchivo: str, libretaUniversitaria: str) -> float:
     
+def calcularPromedioPorEstudiante (nombreArchivoNotas: str, nombreArchivoPromedios: str) -> 
 
 # PILAS
 
