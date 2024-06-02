@@ -122,15 +122,30 @@ def invertirLineas (nombreArchivo: str) -> str:
 # SOLAMENTE TENIA QUE INVERTIR LAS LINEAS E INVERTI todo el TEXTO
 
 #Ej 4
-def agregarFraseAlFinal (nombreArchivo: str, frase: str):
+def agregarFraseAlFinal (nombreArchivo: str, frase: str) -> str:
     archivo = open(nombreArchivo,'a+')
     archivo.write("\n" + frase)
     achivoConFrase = archivo.read()
-    archivo.close
-    return archivoConFraseLeido
+    archivo.close()
+    return archivoConFrase
 
-print (agregarFraseAlFinal ("miArchivo.txt","frase agregada al final"))
+print (agregarFraseAlFinal ("miArchivo.txt","frase agregada al final ej4"))
 #ARREGLAR, NO ESTA TERMINADO  /  FIJARSE SI ESTA ARREGLADO
+
+#Ej 5
+def agregarFraseAlPrincipio (nombreArchivo: str, frase: str) -> str:
+    archivo = open(nombreArchivo, 'r+')
+    archivo.write(frase + "\n")
+    archivoConFrase = archivo.read()
+    archivo.close()
+    return archivoConFrase
+
+print (agregarFraseAlPrincipio("miArchivo.txt","frase agregada al principio ej5"))
+#FIJARSE SI FUNCIONA
+
+#Ej 6
+def listarPalabrasDeArchivo (nombreArchivo: str) -> list[str]:
+    
 
 # PILAS
 
