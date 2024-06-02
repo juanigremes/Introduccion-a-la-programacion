@@ -147,13 +147,12 @@ print (agregarFraseAlPrincipio("miArchivo.txt","frase agregada al principio ej5"
 #def listarPalabrasDeArchivo (nombreArchivo: str) -> list[str]:
 # DESPUES HAGO ESTE EJERCICIO
 
-#Ej 7
-def promedioEstudiante (nombreArchivo: str, libretaUniversitaria: str) -> float:
+#Ej 7 HACER ESTE TAMBIEN
+#def promedioEstudiante (nombreArchivo: str, libretaUniversitaria: str) -> float:
     
-def calcularPromedioPorEstudiante (nombreArchivoNotas: str, nombreArchivoPromedios: str) -> 
+#def calcularPromedioPorEstudiante (nombreArchivoNotas: str, nombreArchivoPromedios: str) -> 
 
 # PILAS
-
 #Ej 8
 from queue import LifoQueue as Pila
 import random
@@ -166,3 +165,63 @@ def generarRandomNum (cantidad: int, desde: int, hasta: int) -> Pila[int]:
 
 #print (generarRandomNum (5,10,20))
 #print(generarRandomNum (5,10,20).queue) para poder visualizarla
+
+#Ej 9
+def cantidadElementos (p: Pila()) -> int:
+    listaAllenar = []
+    while (not p.empty()):
+        elementoDePila = p.get()
+        listaAllenar.append(elementoDePila)
+    for elemento in listaAllenar :
+        p.put(elemento)
+    return len(listaAllenar)
+
+print (cantidadElementos (generarRandomNum (5, 4, 60))) #deberia de dar 5
+print (cantidadElementos (generarRandomNum (10, 4, 60))) # " 10
+print (cantidadElementos (generarRandomNum (3, 4, 60))) # " 3
+
+#Ej 10
+def buscarElMaximo (p: Pila[int]) -> int:
+    listaAllenar = []
+    while (not p.empty()):
+        elementoDePila = p.get()
+        listaAllenar.append(elementoDePila)
+    maximo: int = listaAllenar[0]
+    for elemento in listaAllenar:
+        p.put(elemento)
+        if (elemento > maximo) :
+            maximo = elemento
+    return maximo
+
+print (buscarElMaximo (generarRandomNum (5, 4, 60)))
+print (buscarElMaximo (generarRandomNum (13, 14, 30)))
+
+#Ej 11
+def contarParentesis (s: str) -> int:
+    contador: int = 0
+    for caracter in s:
+        if caracter == '(' or caracter == ')' :
+            contador += 1
+    return contador
+
+def primerParentesis (s: str) -> str:
+    listaParentesis: list[str] = []
+    for caracter in s:
+        if caracter == '(' or caracter == ')' :
+            listaParentesis.append(caracter)
+    return listaParentesis[0]
+
+def validarParentesis (s: str) -> bool:
+    operaciones: list[str] = ('+','-','*','/')
+    
+    
+def estaBienBalanceada (s: str) -> bool:
+    if ((contarParentesis (s) == 0)
+        res = True
+    elif ((contarParentesis (s))%2 != 0):
+        res = False
+    elif (primerParentesis(s) == '('):
+        res = False
+    else:
+        res = validarParentesis (s)
+    return res
