@@ -125,23 +125,24 @@ def invertirLineas (nombreArchivo: str) -> str:
 def agregarFraseAlFinal (nombreArchivo: str, frase: str) -> str:
     archivo = open(nombreArchivo,'a+')
     archivo.write("\n" + frase)
-    achivoConFrase = archivo.read()
-    archivo.close()
-    return archivoConFrase
-
-print (agregarFraseAlFinal ("miArchivo.txt","frase agregada al final ej4"))
-#ARREGLAR, NO ESTA TERMINADO  /  FIJARSE SI ESTA ARREGLADO
-
-#Ej 5
-def agregarFraseAlPrincipio (nombreArchivo: str, frase: str) -> str:
-    archivo = open(nombreArchivo, 'r+')
-    archivo.write(frase + "\n")
     archivoConFrase = archivo.read()
     archivo.close()
     return archivoConFrase
 
-print (agregarFraseAlPrincipio("miArchivo.txt","frase agregada al principio ej5"))
-#FIJARSE SI FUNCIONA
+#print (agregarFraseAlFinal ("miArchivo.txt","frase agregada al final ej4"))
+
+#Ej 5
+def agregarFraseAlPrincipio (nombreArchivo: str, frase: str) -> str:
+    archivo = open(nombreArchivo, 'r')
+    archivoConFrase = frase + "\n" + archivo.read()
+    archivo.close()
+    archivoAmodificar = open(nombreArchivo,'w+')
+    archivoAmodificar.write(archivoConFrase)
+    archivoAmodificar.close
+    archivoModificado = archivoAmodificar.read()
+    return archivoModificado
+
+#print (agregarFraseAlPrincipio ("miArchivo.txt","frase agregada al principio ej5"))
 
 #Ej 6
 #def listarPalabrasDeArchivo (nombreArchivo: str) -> list[str]:
@@ -208,23 +209,41 @@ def contarParentesis (s: str) -> int:
             contador += 1
     return contador
 
-def primerParentesis (s: str) -> str:
-    listaParentesis: list[str] = []
+def pilaDeParentesis (s: str) -> Pila[str]:
+    pilaParentesis = Pila()
     for caracter in s:
         if caracter == '(' or caracter == ')' :
-            listaParentesis.append(caracter)
-    return listaParentesis[0]
+            pilaParentesis.put(caracter)
+    return pilaParentesis
 
+def parentesisAbiertosCerrados (p: Pila[str]) -> bool:
+    parentesisACerrar: int = 0
+    while not p.empty() and parentesisACerrar >= 0:
+        ultimoParentesis = p.get()
+        if ultimoParentesis == ")":
+            parentesisACerrar += 1
+        elif ultimoParentesis == "(":
+            parentesisACerrar -= 1
+    if parentesisACerrar != 0:
+        res = False
+    else:
+        res = True
+    return res
+    
 def estaBienBalanceada (s: str) -> bool:
     if (contarParentesis (s) == 0):
         res = True
     elif ((contarParentesis (s))%2 != 0):
         res = False
-    elif (primerParentesis(s) == '('):
-        res = False
+    else:
+        res = parentesisAbiertosCerrados(pilaDeParentesis(s))
     return res
 
-## TERMINAR ESTE TAMBIEN
+"""
+print (estaBienBalanceada("1 + ) 2 x 3 ( ( )"))
+print (estaBienBalanceada("10 * ( 1 + ( 2 * ( =1)))"))
+print (estaBienBalanceada("1 + ( 2 x 3 = ( 2 0 / 5 ) )"))
+"""
 
 #Ej 12
 def pertenece (s: list[str],e: str ) -> bool:
@@ -364,7 +383,9 @@ def jugarCartonDeBingo (carton: list[int], bolillero: Cola[int]):
     while not bolillero.empty():
         bolita: int = bolillero.get()
         bolilleroAux.put(bolita)
-    bolillero = bolilleroAux
+    while not bolilleroAux.empty():
+        bolita: int = bolilleroAux.get()
+        bolillero.put(bolita)
     return cantJugadas
 
 #secuencia = armarSecuenciaDeBingo()
@@ -372,3 +393,94 @@ def jugarCartonDeBingo (carton: list[int], bolillero: Cola[int]):
 #print (jugarCartonDeBingo ([1,4,56,78,3,2,59], secuencia))
 #print (jugarCartonDeBingo ([1,4,56,78,3,2,59], armarSecuenciaDeBingo()))
 #print (jugarCartonDeBingo ([1,4,56,78,3,2,59], armarSecuenciaDeBingo()))
+
+#Ej 17
+def nPacientesUrgentes (c: Cola[tuple[int,str,str]]) -> int:
+    colaPlaceHolder = Cola()
+    contadorUrgentes: int = 0
+    while not c.empty():
+        tripla = c.get()
+        if perteneceV2 ([1,2,3],tripla[0]):
+            contadorUrgentes += 1
+        colaPlaceHolder.put(tripla)
+    while not colaPlaceHolder.empty():
+        tripla = colaPlaceHolder.get()
+        c.put(tripla)
+    return contadorUrgentes
+
+'''
+urgencia: int = random.randint(1,10)
+urgencia1: int = random.randint(1,10)
+urgencia2: int = random.randint(1,10)
+cola = Cola()
+cola.put([urgencia,"nombre","especialidad"])
+cola.put([urgencia1,"nombre","especialidad"])
+cola.put([urgencia2,"nombre","especialidad"])
+print (cola.queue)
+print (nPacientesUrgentes(cola))
+print (cola.queue)
+'''
+
+#Ej 18
+def registroClientes () -> Cola[tuple[str,int,bool,bool]]:
+    ordenDeLlegada = Cola()
+    siguienteCliente: str = ""
+    while (True):
+        siguienteCliente = input("Registrarse [si] [no] -> ")
+        if (siguienteCliente == "no"):
+            return ordenDeLlegada
+        else:
+            datosCliente: list[str,int,bool,bool] = []
+            nya = input("Ingrese su Nombre y Apellido: ")
+            datosCliente.append(nya)
+            dni = input("Ingrese su DNI: ")
+            datosCliente.append(dni)
+            cuentaPreferencial = input("Cuenta Preferencial [si] [no] -> ")
+            if (cuentaPreferencial == "si"):
+                cuentaPreferencial = True
+            elif (cuentaPreferencial == "no"):
+                cuentaPreferencial = False
+            datosCliente.append(cuentaPreferencial)
+            prioridad = input("Mayor a 65 años [si] [no] -> ")
+            if (prioridad == "si"):
+                prioridad = True
+            elif (prioridad == "no"):
+                prioridad = False
+            datosCliente.append(prioridad)
+            ordenDeLlegada.put(tuple(datosCliente))
+            print ("Siguiente Cliente")
+
+def atencionAClientes(c: Cola[tuple[str,int,bool,bool]]) -> Cola[tuple[str,int,bool,bool]]:
+    colaDeEntradaAux = Cola()
+    colaPreferencial = Cola()
+    colaPrioridad = Cola()
+    colaNormal = Cola()
+    while not c.empty():
+        cliente: tuple[str,int,bool,bool] = c.get()
+        if (cliente[3] == True):
+            colaPrioridad.put(cliente)
+            colaDeEntradaAux.put(cliente)
+        elif (cliente[2] == True):
+            colaPreferencial.put(cliente)
+            colaDeEntradaAux.put(cliente)
+        else:
+            colaNormal.put(cliente)
+            colaDeEntradaAux.put(cliente)
+    colaEnOrden = Cola()
+    while not colaPrioridad.empty():
+        cliente: tuple[str,int,bool,bool] = colaPrioridad.get()
+        colaEnOrden.put(cliente)
+    while not colaPreferencial.empty():
+        cliente: tuple[str,int,bool,bool] = colaPreferencial.get()
+        colaEnOrden.put(cliente)
+    while not colaNormal.empty():
+        cliente: tuple[str,int,bool,bool] = colaNormal.get()
+        colaEnOrden.put(cliente)
+    while not colaDeEntradaAux.empty():
+        cliente: tuple[str,int,bool,bool] = colaDeEntradaAux.get()
+        c.put(cliente)
+    return colaEnOrden.queue
+
+#print (atencionAClientes(registroClientes()))
+
+# DICCIONARIOS
