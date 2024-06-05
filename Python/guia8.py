@@ -19,9 +19,9 @@ def armarPalabras (texto: str) -> list[str]:
     listaPalabras: list[str] = []
     palabra: str = ""
     for i in range (0,len(texto),1):
-        if (texto[i] != " " and texto[i] != "\n"):
+        if (texto[i] != " " and texto[i] != "\n" and texto[i] != "#" and texto[i] != "*"):
             palabra = palabra + texto[i]
-        elif (palabra == "" and palabra == "\n"):
+        elif (palabra == "" or palabra == "\n"):
             palabra = ""
         else:
             listaPalabras.append(palabra)
@@ -30,7 +30,7 @@ def armarPalabras (texto: str) -> list[str]:
         listaPalabras.append(palabra)
     return listaPalabras
 
-#print (armarPalabras("hola que tal"))
+#print (armarPalabras("hola que tal \n # comentario"))
 #print (armarPalabras("   hola    que   tal "))
 
 def existePalabra (palabra: str, nombreArchivo: str) -> bool:
@@ -508,3 +508,103 @@ def agruparPorLongitud (nombreArchivo: str) -> dict[int,int]:
 #print (agruparPorLongitud("miArchivo.txt"))
 
 #Ej 20
+# HACER
+
+#Ej 21
+def laPalabraMasFrecuente (nombreArchivo: str) -> str:
+    archivo = open(nombreArchivo,"r")
+    archivoLeido = archivo.read()
+    archivo.close()
+    palabrasDelArchivo = armarPalabras(archivoLeido)
+    palabraXapariciones : dict[str,int] = {}
+    for palabra in palabrasDelArchivo:
+        if pertenece (palabraXapariciones.keys(),palabra):
+            palabraXapariciones[palabra] +=1
+        else:
+            palabraXapariciones[palabra] = 1
+    todosLosValores = list(palabraXapariciones.values())
+    maximo: tuple[int,int] = [0,0] #[cantidad de apariciones , indice]
+    for indice in range(0,len(todosLosValores),1):
+        if todosLosValores[indice] > maximo[0]:
+            maximo = [todosLosValores[indice],indice]
+    todasLasClaves = list(palabraXapariciones.keys())
+    res: str = todasLasClaves[maximo[1]]
+    return res
+
+#print (laPalabraMasFrecuente("miArchivo.txt"))
+
+#Ej 22
+historiales: dict[str,Pila[str]] = {}
+
+def visitarSitio (h: dict[str,Pila[str]], usuario: str, sitio: str):
+    if (pertenece(list(h.keys()),usuario)):
+        h[usuario].put(sitio)
+    else:
+        s = Pila()
+        s.put(sitio)
+        h[usuario] = s
+
+def navegarAtras (h: dict[str,Pila[str]], usuario:str):
+    ultimoSitio = h[usuario].get()
+    sitioParaAtras = h[usuario].get()
+    h[usuario].put(ultimoSitio)
+    h[usuario].put(sitioParaAtras)
+
+"""
+visitarSitio(historiales,"juan","sitio 1")
+visitarSitio(historiales,"juan","sitio 2")
+visitarSitio(historiales,"juan","sitio 3")
+visitarSitio(historiales,"maria","sitio 1")
+visitarSitio(historiales,"maria","sitio 4")
+visitarSitio(historiales,"maria","sitio 1")
+visitarSitio(historiales,"maria","sitio 8")
+visitarSitio(historiales,"carlos","sitio 6")
+visitarSitio(historiales,"carlos","sitio 0")
+visitarSitio(historiales,"carlos","sitio 4")
+print (((list(historiales.values()))[0]).queue)
+print (((list(historiales.values()))[1]).queue)
+print (((list(historiales.values()))[2]).queue)
+print ("\n ahora navegan para atras \n")
+navegarAtras(historiales,"juan")
+navegarAtras(historiales,"maria")
+navegarAtras(historiales,"carlos")
+print (((list(historiales.values()))[0]).queue)
+print (((list(historiales.values()))[1]).queue)
+print (((list(historiales.values()))[2]).queue)
+"""
+
+#Ej 23 - inventario: dict[str, dict[str,any]] (LO COPIE DE TOMI NO SE QUE SIGNIFICA ESTO)
+def agregarProducto (inventario: dict[str,dict[str,float]], nombre: str, precio: float, cantidad: float):
+    precioYcantidad: dict[str,float] = {
+        "precio" : precio,
+        "cantidad" : cantidad
+    }
+    inventario[nombre] = precioYcantidad
+
+def actualizarStock (inventario: dict[str,dict[str,float]], nombre: str, cantidad: float):
+    inventario[nombre]["cantidad"] = cantidad
+    
+def actualizarPrecios (inventario: dict[str,dict[str,float]], nombre: str, precio: float):
+    inventario[nombre]["precio"] = precio
+
+def calcularValorInventario (inventario: dict[str,dict[str,float]]) -> float:
+    valorTotal: float = 0
+    for key in inventario:
+        if inventario[key] != 0:
+            valorTotal += inventario[key]["cantidad"] * inventario[key]["precio"]   
+    return valorTotal
+
+inventario = {}
+print ("\n agrego productos \n")
+agregarProducto (inventario,"remera",100,10)
+agregarProducto (inventario,"pantalon",150,15)
+agregarProducto (inventario,"mochila",300,50)
+print (inventario)
+print ("\n actualizo stock \n")
+actualizarStock (inventario,"remera",20)
+print (inventario)
+print ("\n actualizo precios \n")
+actualizarPrecios (inventario,"mochila",200)
+print (inventario)
+print ("\n valor del inventario: \n")
+print (calcularValorInventario(inventario))
