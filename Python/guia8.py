@@ -594,6 +594,7 @@ def calcularValorInventario (inventario: dict[str,dict[str,float]]) -> float:
             valorTotal += inventario[key]["cantidad"] * inventario[key]["precio"]   
     return valorTotal
 
+"""
 inventario = {}
 print ("\n agrego productos \n")
 agregarProducto (inventario,"remera",100,10)
@@ -608,3 +609,4 @@ actualizarPrecios (inventario,"mochila",200)
 print (inventario)
 print ("\n valor del inventario: \n")
 print (calcularValorInventario(inventario))
+"""
