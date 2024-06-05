@@ -145,14 +145,19 @@ def agregarFraseAlPrincipio (nombreArchivo: str, frase: str) -> str:
 #print (agregarFraseAlPrincipio ("miArchivo.txt","frase agregada al principio ej5"))
 
 #Ej 6
-#def listarPalabrasDeArchivo (nombreArchivo: str) -> list[str]:
+"""
+def listarPalabrasDeArchivo (nombreArchivo: str) -> list[str]:
+    archivo = open(nombreArchivo,"b")
+    archivoLeido = archivo.read()
+    archivo.close()
+    
 # DESPUES HAGO ESTE EJERCICIO
 
 #Ej 7 HACER ESTE TAMBIEN
-#def promedioEstudiante (nombreArchivo: str, libretaUniversitaria: str) -> float:
+def promedioEstudiante (nombreArchivo: str, libretaUniversitaria: str) -> float:
     
-#def calcularPromedioPorEstudiante (nombreArchivoNotas: str, nombreArchivoPromedios: str) -> 
-
+def calcularPromedioPorEstudiante (nombreArchivoNotas: str, nombreArchivoPromedios: str) -> 
+"""
 # PILAS
 #Ej 8
 from queue import LifoQueue as Pila
@@ -484,3 +489,22 @@ def atencionAClientes(c: Cola[tuple[str,int,bool,bool]]) -> Cola[tuple[str,int,b
 #print (atencionAClientes(registroClientes()))
 
 # DICCIONARIOS
+#Ej 19
+def agruparPorLongitud (nombreArchivo: str) -> dict[int,int]:
+    archivo = open(nombreArchivo,"r")
+    archivoLeido = archivo.read()
+    archivo.close()
+    palabrasDelArchivo = armarPalabras(archivoLeido)
+    longitudXcantidad : dict[int,int] = {}
+    for palabra in palabrasDelArchivo:
+        longitudPalabra = len(palabra)
+        if longitudPalabra != 0:
+            if pertenece (longitudXcantidad.keys(),longitudPalabra):
+                longitudXcantidad[longitudPalabra] +=1
+            else:
+                longitudXcantidad[longitudPalabra] = 1
+    return longitudXcantidad
+
+#print (agruparPorLongitud("miArchivo.txt"))
+
+#Ej 20
