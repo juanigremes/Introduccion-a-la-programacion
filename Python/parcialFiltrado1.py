@@ -94,11 +94,7 @@ def subsecuencia_mas_larga (tipos_pacientes_atendidos: list[str]) -> int:
     contadorDeApariciones: int = 0
     contadorDeAparicionesMaximo: int = 0
     for indice in range (0, len(tipos_pacientes_atendidos), 1):
-        if tipos_pacientes_atendidos[indice] == "perro":
-            contadorDeApariciones += 1
-            if contadorDeApariciones == 1:
-                indicePlaceHolder = indice
-        elif tipos_pacientes_atendidos[indice] == "gato":
+        if tipos_pacientes_atendidos[indice] == "perro" or tipos_pacientes_atendidos[indice] == "gato":
             contadorDeApariciones += 1
             if contadorDeApariciones == 1:
                 indicePlaceHolder = indice
