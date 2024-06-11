@@ -115,14 +115,14 @@ def quien_gano_el_ta_te_ti_facilito (tablero: list[list[str]]) -> int:
     for fila in tablero:
         n: int = 1
         for posicion in fila:
-            columna: str = "dia " + str(n)
+            columna: str = "columna " + str(n)
             if (columna) in columnas:
                 columnas[columna].append(posicion)
             else:
                 columnas[columna] = [posicion]
             n += 1
     victoriasX: int = 0
-    victoriasO: int = 1
+    victoriasO: int = 0
     for columna in columnas.values():
         if ganoX(columna):
             victoriasX += 1
@@ -138,6 +138,29 @@ def quien_gano_el_ta_te_ti_facilito (tablero: list[list[str]]) -> int:
         else:
             res = 0
     return res
+
+"""tablero=[['X','','','',''],
+         ['O','O','X','X',''],
+         ['O','O','X','O',''],
+         ['X','X','X','O',''],
+         ['X','O','O','X','']]
+
+tablero1=[['X','O','','','','X'],
+          ['O','O','X','X','',''],
+          ['O','O','X','O','','X'],
+          ['X','X','','O','','X'],
+          ['X','O','O','X','','X']]
+
+tablero2=[['X','O','','','','X',''],
+          ['O','O','X','X','','','O'],
+          ['O','O','X','O','','X',''],
+          ['X','X','','O','','X','O'],
+          ['X','O','O','X','','X','X']]
+
+print (quien_gano_el_ta_te_ti_facilito(tablero))
+print (quien_gano_el_ta_te_ti_facilito(tablero1))
+print (quien_gano_el_ta_te_ti_facilito(tablero2))"""
+
 
 #Ej 4 - CUANTOS PALINDROMOS SUFIJOS
 def darVuelta(texto: str) -> str:
