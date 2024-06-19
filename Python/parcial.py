@@ -23,19 +23,17 @@ def promedio (listaSalas: list[int]) -> float:
 def promedio_de_salidas (registro: dict[str,list[int]]) -> dict[str,tuple[int,float]]:
     res: dict[str,tuple[int,float]] = {}
     for persona in registro.keys():
-        salasXpromedio: tuple[int,float] = tuple([salasTerminadas(registro[persona]),promedio(registro[persona])])
-        res[persona] = (salasXpromedio)
+        salasXpromedio: tuple[int,float] = [salasTerminadas(registro[persona]),promedio(registro[persona])]
+        res[persona] = tuple(salasXpromedio)
     return res
 
 #Ej 2
 def primerTiempoValido (tiempos: list[int]) -> int:
-    res: int = 0
-    condicion: bool = False
-    while condicion == False:
-        for indice in range (0, len(tiempos), 1):
-            if tiempos[indice] != 0:
-                res = indice
-                condicion = True
+    lista: list[int] = []
+    for indice in range (0, len(tiempos), 1):
+        if tiempos[indice] != 0:
+            lista.append(indice)
+    res: int = lista[0]
     return res
 
 def tiempo_mas_rapido (tiempos_salas: list[int]) -> int:
